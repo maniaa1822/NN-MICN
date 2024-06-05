@@ -1,6 +1,3 @@
-#export CUDA_VISIBLE_DEVICES=5
-
-model_name=MICN
 
 python3 -u run.py \
   --task_name long_term_forecast \
@@ -8,7 +5,7 @@ python3 -u run.py \
   --root_path /home/matteo/projects/NN/MICN/dataset/weather \
   --data_path weather.csv \
   --model_id weather_96_96 \
-  --model $model_name \
+  --model MICN \
   --data custom \
   --features M \
   --seq_len 96 \
@@ -32,7 +29,7 @@ python3 -u run.py \
   --root_path /home/matteo/projects/NN/MICN/dataset/weather \
   --data_path weather.csv \
   --model_id weather_96_192 \
-  --model $model_name \
+  --model MICN \
   --data custom \
   --features M \
   --seq_len 96 \
@@ -58,7 +55,7 @@ python3 -u run.py \
   --root_path /home/matteo/projects/NN/MICN/dataset/weather \
   --data_path weather.csv \
   --model_id weather_96_336 \
-  --model $model_name \
+  --model MICN \
   --data custom \
   --features M \
   --seq_len 96 \
@@ -82,7 +79,7 @@ python3 -u run.py \
   --root_path /home/matteo/projects/NN/MICN/dataset/weather \
   --data_path weather.csv \
   --model_id weather_96_720 \
-  --model $model_name \
+  --model MICN \
   --data custom \
   --features M \
   --seq_len 96 \
