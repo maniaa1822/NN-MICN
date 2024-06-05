@@ -1,17 +1,15 @@
 export CUDA_VISIBLE_DEVICES=0
 
-model_name=MICN
-
-python -u run.py \
+python3 run.py \
   --task_name imputation \
   --is_training 1 \
-  --root_path ./dataset/ETT-small/ \
+  --root_path ./data \
   --data_path ETTh1.csv \
   --model_id ETTh1_mask_0.125 \
   --mask_rate 0.125 \
-  --model $model_name \
+  --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
@@ -30,16 +28,16 @@ python -u run.py \
   --conv_kernel 12 16 \
   --learning_rate 0.001
 
-python -u run.py \
+python3 run.py \
   --task_name imputation \
   --is_training 1 \
-  --root_path ./dataset/ETT-small/ \
+  --root_path ./data \
   --data_path ETTh1.csv \
   --model_id ETTh1_mask_0.25 \
   --mask_rate 0.25 \
-  --model $model_name \
+  --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
@@ -58,16 +56,16 @@ python -u run.py \
   --conv_kernel 12 16 \
   --learning_rate 0.001
 
-python -u run.py \
+python3 run.py \
   --task_name imputation \
   --is_training 1 \
-  --root_path ./dataset/ETT-small/ \
+  --root_path ./data \
   --data_path ETTh1.csv \
   --model_id ETTh1_mask_0.375 \
   --mask_rate 0.375 \
-  --model $model_name \
+  --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
@@ -86,16 +84,16 @@ python -u run.py \
   --conv_kernel 12 16 \
   --learning_rate 0.001
 
-python -u run.py \
+python3 run.py \
   --task_name imputation \
   --is_training 1 \
-  --root_path ./dataset/ETT-small/ \
+  --root_path ./data \
   --data_path ETTh1.csv \
   --model_id ETTh1_mask_0.5 \
   --mask_rate 0.5 \
-  --model $model_name \
+  --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
