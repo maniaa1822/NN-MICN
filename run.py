@@ -20,8 +20,7 @@ if __name__ == '__main__':
                         help='task name, options:[long_term_forecast, short_term_forecast, imputation, classification, anomaly_detection]')
     parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
     parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-    parser.add_argument('--model', type=str, required=True, default='Autoformer',
-                        help='model name, options: [Autoformer, Transformer, TimesNet]')
+    parser.add_argument('--model', type=str, required=True, default='MICN')
 
     # data loader
     parser.add_argument('--data', type=str, required=True, default='ETTm1', help='dataset type')
@@ -81,8 +80,8 @@ if __name__ == '__main__':
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
     parser.add_argument('--gpu', type=int, default=0, help='gpu')
-    parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)
-    parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
+    #parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)
+    #parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
 
     
     # de-stationary projector params
@@ -95,12 +94,12 @@ if __name__ == '__main__':
     args.use_gpu = True if torch.cuda.is_available() else False
 
     print(torch.cuda.is_available())
-
+    """
     if args.use_gpu and args.use_multi_gpu:
         args.devices = args.devices.replace(' ', '')
         device_ids = args.devices.split(',')
         args.device_ids = [int(id_) for id_ in device_ids]
-        args.gpu = args.device_ids[0]
+        args.gpu = args.device_ids[0]"""
 
     print('Args in experiment:')
     print_args(args)
