@@ -17,7 +17,7 @@ Time series forecasting is the task of predicting future values based on histori
 * **Isometric Convolution:**  MICN employs a modified convolution operation (isometric convolution) to efficiently model global correlations without the computational burden of attention mechanisms.
 * **Linear Complexity:** MICN's design achieves linear complexity with respect to the sequence length, making it more efficient than Transformer-based models for long-term forecasting.
 
-###  Overall Architecture
+##  Overall Architecture
 As shown in Figure 1, we decompose the time series into seasonal part and trend part by Multi-scale Hybrid Decomposition. For seasonal part, we use Seasonal Prediction block to predict. For trend part, we use simple regression to predict. 
 <p align="center">
 <img src=".\img\overall.png" height = "202" alt="" align=center />
@@ -33,12 +33,13 @@ The seasonal part contains several different patterns after Multi-scale Hybrid D
 </p>
 
 
-#### Local-Global module
+### Local-Global module
 We use downsampling convolution to extract local features and isometric convolution to capture global correlations. 
 <p align="center">
 <img src=".\img\local-global.png" height = "150" alt="" align=center />
 <br><br>
 </p>
+
 
 ### Imputation for Missing Data
 
