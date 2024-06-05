@@ -17,33 +17,50 @@ Time series forecasting is the task of predicting future values based on histori
 * **Isometric Convolution:**  MICN employs a modified convolution operation (isometric convolution) to efficiently model global correlations without the computational burden of attention mechanisms.
 * **Linear Complexity:** MICN's design achieves linear complexity with respect to the sequence length, making it more efficient than Transformer-based models for long-term forecasting.
 
+###  Overall Architecture
+As shown in Figure 1, we decompose the time series into seasonal part and trend part by Multi-scale Hybrid Decomposition. For seasonal part, we use Seasonal Prediction block to predict. For trend part, we use simple regression to predict. 
+<p align="center">
+<img src=".\img\overall.png" height = "202" alt="" align=center />
+<br><br>
+</p>
+
+
+### Seasonal Prediction block
+The seasonal part contains several different patterns after Multi-scale Hybrid Decomposition. For each pattern, we use local-global module to extract local information and global correlations. 
+<p align="center">
+<img src=".\img\seasonal.png" height = "250" alt="" align=center />
+<br><br>
+</p>
+
+
+#### Local-Global module
+We use downsampling convolution to extract local features and isometric convolution to capture global correlations. 
+<p align="center">
+<img src=".\img\local-global.png" height = "150" alt="" align=center />
+<br><br>
+</p>
+
 ### Imputation for Missing Data
 
 Real-world time series data often contains missing values. This implementation incorporates data imputation techniques to fill in these gaps before feeding the data into the MICN model. This enhancement makes the model more robust and applicable to a wider range of datasets.
 
 ## Repository Contents
 
-* `micn.py`: Implementation of the core MICN model architecture.
-* `imputation.py`: Contains functions for data imputation (replace with the specific method you used).
-* `train.py`: Script for training the MICN model on your dataset.
-* `evaluate.py`: Script for evaluating model performance on test data.
-* `config.py`: Configuration file for hyperparameters, model settings, and imputation options.
+* **`data`:** Contains the raw time series data used for training and evaluation.
+* **`data_provider`:** Handles data loading, preprocessing, and batching for training and evaluation.
+* **`exp`:**  Manages experiment sessions, including configuration, logging, and checkpointing.
+* **`models`:** Contains the implementation of the MICN model architecture.
+* **`run.py`:** Main script for training and evaluating the model.
 
 
 ## Installation
 
 ```bash
-git clone https://github.com/[your_username]/[your_repository_name].git
-cd [your_repository_name]
+git clone https://github.com/maniaa1822/NN-MICN.git
+cd NN-MICN
 pip install -r requirements.txt
 ```
 
-## Usage
-
-1. Prepare your data in a suitable format (CSV, NumPy, etc.).
-2. Configure model and imputation settings in `config.py`.
-3. Train the model: `python train.py`
-4. Evaluate the model: `python evaluate.py`
 
 ## Acknowledgments
 
