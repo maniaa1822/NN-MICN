@@ -2,15 +2,15 @@
 
 model_name=MICN
 
-python3 -u run.py \
+python3 run.py \
   --task_name long_term_forecast \
   --is_training 1 \
-  --root_path dataset \
+  --root_path data \
   --data_path weather.csv \
   --model_id weather_96_96 \
   --model MICN \
   --data custom \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 96 \
   --pred_len 96 \

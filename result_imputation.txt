@@ -1,9 +1,6 @@
-imputation_ETTh1_96_96_MICN_ETTh1_ftM_sl96_ll0_pl96_dm64_nh8_el2_dl1_df64_fc3_ebtimeF_dtTrue_Exp_0  
-mse:0.12711292505264282, mae:0.2528110146522522
+imputation_ETTh1_mask_0.125_MICN_ETTh1_ftMS_sl96_ll0_pl0_dm64_nh8_el2_dl1_df64_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.012081589549779892, mae:0.07724842429161072
 
-imputation_ETTh1_96_96_MICN_ETTh1_ftM_sl96_ll0_pl96_dm64_nh8_el2_dl1_df64_fc3_ebtimeF_dtTrue_Exp_0  
-mse:0.11575982719659805, mae:0.24367107450962067
-
-imputation_ETTh1_96_96_MICN_ETTh1_ftMS_sl96_ll0_pl96_dm64_nh8_el2_dl1_df64_fc3_ebtimeF_dtTrue_Exp_0  
-mse:0.021044021472334862, mae:0.10664106160402298
+imputation_ETTh1_mask_0.25_MICN_ETTh1_ftMS_sl96_ll0_pl0_dm64_nh8_el2_dl1_df64_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.017318982630968094, mae:0.09368126839399338
 
