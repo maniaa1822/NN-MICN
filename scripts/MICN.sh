@@ -25,13 +25,13 @@ python3 run.py \
 
 python3 run.py \
   --task_name long_term_forecast \
-  --is_training 1 \
-  --root_path data/weather.csv \
+  --is_training 0 \
+  --root_path data \
   --data_path weather.csv \
   --model_id weather_96_192 \
   --model MICN \
   --data custom \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 96 \
   --pred_len 192 \
@@ -43,10 +43,10 @@ python3 run.py \
   --c_out 21 \
   --d_model 32 \
   --d_ff 32 \
-  --top_k 5 \
+  #--top_k 5 \
   --des 'Exp' \
   --itr 1 \
-  --train_epochs 1
+  #--train_epochs 1
 
 
 python3 run.py \
