@@ -4,13 +4,13 @@ python3 run.py \
   --is_training 1 \
   --root_path data \
   --data_path weather.csv \
-  --model_id weather_96_96 \
+  --model_id weather_96_48 \
   --model MICN \
   --data custom \
   --features M \
   --seq_len 96 \
   --label_len 96 \
-  --pred_len 96 \
+  --pred_len 48 \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
