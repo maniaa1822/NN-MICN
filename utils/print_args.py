@@ -29,7 +29,6 @@ def print_args(args):
         print()
 
     print("\033[1m" + "Model Parameters" + "\033[0m")
-    #print(f'  {"Top k:":<20}{args.top_k:<20}{"Num Kernels:":<20}{args.num_kernels:<20}')
     print(f'  {"Enc In:":<20}{args.enc_in:<20}{"Dec In:":<20}{args.dec_in:<20}')
     print(f'  {"C Out:":<20}{args.c_out:<20}{"d model:":<20}{args.d_model:<20}')
     print(f'  {"n heads:":<20}{args.n_heads:<20}{"e layers:":<20}{args.e_layers:<20}')
@@ -50,7 +49,6 @@ def print_args(args):
 
     print("\033[1m" + "GPU" + "\033[0m")
     print(f'  {"Use GPU:":<20}{args.use_gpu:<20}{"GPU:":<20}{args.gpu:<20}')
-    #print(f'  {"Use Multi GPU:":<20}{args.use_multi_gpu:<20}{"Devices:":<20}{args.devices:<20}')
     print()
 
     print("\033[1m" + "De-stationary Projector Params" + "\033[0m")
