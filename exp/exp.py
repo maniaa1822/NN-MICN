@@ -28,7 +28,7 @@ class Exp_Basic(object):
     def _acquire_device(self):
         if self.args.use_gpu:
             os.environ["CUDA_VISIBLE_DEVICES"] = str(
-                self.args.gpu) #if not self.args.use_multi_gpu else self.args.devices
+                self.args.gpu) 
             device = torch.device('cuda:{}'.format(self.args.gpu))
             print('Use GPU: cuda:{}'.format(self.args.gpu))
         else:
@@ -54,9 +54,6 @@ class Exp_Imputation(Exp_Basic):
 
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
-
-        #if self.args.use_multi_gpu and self.args.use_gpu:
-        #    model = nn.DataParallel(model, device_ids=self.args.device_ids)
         return model
 
     def _get_data(self, flag):
@@ -275,9 +272,6 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
-
-        #if self.args.use_multi_gpu and self.args.use_gpu:
-        #    model = nn.DataParallel(model, device_ids=self.args.device_ids)
         return model
 
     def _get_data(self, flag):

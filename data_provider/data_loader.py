@@ -1,17 +1,9 @@
 import os
-#import numpy as np
 import pandas as pd
-#import glob
-#import re
-#import torch
 from torch.utils.data import Dataset #,DataLoader
 from sklearn.preprocessing import StandardScaler
 from utils.timefeatures import time_features
-#from data_provider.m4 import M4Dataset, M4Meta
-#from data_provider.uea import subsample, interpolate_missing, Normalizer
-#from sktime.datasets import load_from_tsfile_to_dataframe
 import warnings
-#from utils.augmentation import run_augmentation_single
 
 warnings.filterwarnings('ignore')
 
@@ -84,9 +76,6 @@ class Dataset_ETT_hour(Dataset):
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
 
-        #if self.set_type == 0 and self.args.augmentation_ratio > 0:
-        #    self.data_x, self.data_y, augmentation_tags = run_augmentation_single(self.data_x, self.data_y, self.args)
-            
         self.data_stamp = data_stamp
 
     def __getitem__(self, index):
@@ -107,6 +96,7 @@ class Dataset_ETT_hour(Dataset):
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
+    
 class Dataset_ETT_minute(Dataset):
     def __init__(self, args, root_path, flag='train', size=None,
                  features='S', data_path='ETTm1.csv',
@@ -176,9 +166,6 @@ class Dataset_ETT_minute(Dataset):
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
-
-        #if self.set_type == 0 and self.args.augmentation_ratio > 0:
-        #    self.data_x, self.data_y, augmentation_tags = run_augmentation_single(self.data_x, self.data_y, self.args)
 
         self.data_stamp = data_stamp
 
@@ -286,9 +273,6 @@ class Dataset_Weather(Dataset):
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
-
-        #if self.set_type == 0 and self.args.augmentation_ratio > 0:
-        #    self.data_x, self.data_y, augmentation_tags = run_augmentation_single(self.data_x, self.data_y, self.args)
 
         self.data_stamp = data_stamp
 
