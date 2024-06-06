@@ -37,20 +37,18 @@ if __name__ == '__main__':
     parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
     parser.add_argument('--label_len', type=int, default=48, help='start token length')
     parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
-    parser.add_argument('--seasonal_patterns', type=str, default='Monthly', help='subset for M4')
+    parser.add_argument('--seasonal_patterns', type=str, default='Monthly')
     parser.add_argument('--inverse', action='store_true', help='inverse output data', default=False)
 
     # inputation task
     parser.add_argument('--mask_rate', type=float, default=0.25, help='mask ratio')
 
     # model define
-    parser.add_argument('--top_k', type=int, default=5, help='for TimesBlock')
-    parser.add_argument('--num_kernels', type=int, default=6, help='for Inception') # useless
     parser.add_argument('--enc_in', type=int, default=7, help='encoder input size')
     parser.add_argument('--dec_in', type=int, default=7, help='decoder input size')
     parser.add_argument('--c_out', type=int, default=7, help='output size')
     parser.add_argument('--d_model', type=int, default=512, help='dimension of model')
-    parser.add_argument('--n_heads', type=int, default=8, help='num of heads') # useless?
+    parser.add_argument('--n_heads', type=int, default=8, help='num of heads') # useless
     parser.add_argument('--e_layers', type=int, default=2, help='num of encoder layers')
     parser.add_argument('--d_layers', type=int, default=1, help='num of decoder layers')
     parser.add_argument('--d_ff', type=int, default=2048, help='dimension of fcn')
@@ -80,9 +78,6 @@ if __name__ == '__main__':
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
     parser.add_argument('--gpu', type=int, default=0, help='gpu')
-    #parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)
-    #parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
-
     
     # de-stationary projector params
     parser.add_argument('--p_hidden_dims', type=int, nargs='+', default=[128, 128],
@@ -94,12 +89,6 @@ if __name__ == '__main__':
     args.use_gpu = True if torch.cuda.is_available() else False
 
     print(torch.cuda.is_available())
-    """
-    if args.use_gpu and args.use_multi_gpu:
-        args.devices = args.devices.replace(' ', '')
-        device_ids = args.devices.split(',')
-        args.device_ids = [int(id_) for id_ in device_ids]
-        args.gpu = args.device_ids[0]"""
 
     print('Args in experiment:')
     print_args(args)
