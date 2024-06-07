@@ -20,7 +20,6 @@ python3 run.py \
   --c_out 21 \
   --d_model 32 \
   --d_ff 32 \
-  --top_k 5 \
   --des 'Exp' \
   --itr 1
 
@@ -44,7 +43,6 @@ python3 -u run.py \
   --c_out 21 \
   --d_model 32 \
   --d_ff 32 \
-  --top_k 5 \
   --des 'Exp' \
   --itr 1 \
   --train_epochs 1
@@ -70,7 +68,6 @@ python3 -u run.py \
   --c_out 21 \
   --d_model 32 \
   --d_ff 32 \
-  --top_k 5 \
   --des 'Exp' \
   --itr 1
 
@@ -94,7 +91,6 @@ python3 -u run.py \
   --c_out 21 \
   --d_model 32 \
   --d_ff 32 \
-  --top_k 5 \
   --des 'Exp' \
   --itr 1 \
   --train_epochs 1

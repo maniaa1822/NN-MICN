@@ -24,7 +24,6 @@ python3 run.py \
   --d_ff 64 \
   --des 'Exp' \
   --itr 1 \
-  --top_k 3 \
   #--conv_kernel 12 16 \
   --learning_rate 0.001
 
@@ -52,7 +51,6 @@ python3 run.py \
   --d_ff 64 \
   --des 'Exp' \
   --itr 1 \
-  --top_k 3 \
   #--conv_kernel 12 16 \
   --learning_rate 0.001
 
@@ -80,7 +78,6 @@ python3 run.py \
   --d_ff 64 \
   --des 'Exp' \
   --itr 1 \
-  --top_k 3 \
   --conv_kernel 12 16 \
   --learning_rate 0.001
 
@@ -108,6 +105,5 @@ python3 run.py \
   --d_ff 64 \
   --des 'Exp' \
   --itr 1 \
-  --top_k 3 \
   --conv_kernel 12 16 \
   --learning_rate 0.001
