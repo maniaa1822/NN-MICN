@@ -87,6 +87,26 @@ python3 -u run.py \
   --des 'Long Term Forecasting exp' \
 ```
 
+```bash
+python3 -u run.py \
+  --task_name imputation \
+  --is_training 1 \
+  --root_path ./data \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_mask_0.125 \
+  --mask_rate 0.125 \
+  --model MICN \
+  --data ETTh1 \
+  --features MS \
+  --seq_len 96 \
+  --label_len 0 \
+  --pred_len 0 \
+  --batch_size 16 \
+  --d_model 64 \
+  --d_ff 64 \
+  --des 'Imputation exp' \
+```
+
 ## Experiments
 ### Main Result
 
