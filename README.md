@@ -54,7 +54,7 @@ Real-world time series data often contains missing values. This implementation i
 * **`run.py`:** Main script for training and evaluating the model.
 
 
-## Installation
+## 1. Installation
 
 ```bash
 git clone https://github.com/maniaa1822/NN-MICN.git
@@ -62,6 +62,38 @@ cd NN-MICN
 pip install -r requirements.txt
 ```
 
+### 2. Configure the Experiment
+
+* Modify the configuration parameters that you can find in the `run.py` file.
+* The parameters in the first example command are already set for the long term forecasting task.
+* The parameters in the second example command are already set for the imputation task.
+
+### 3. Run the Code
+
+* Execute the following command in your terminal:
+
+```bash
+python3 -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path ./data \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_96 \
+  --model MICN \
+  --data ETTh1 \
+  --features M \
+  --seq_len 96 \
+  --label_len 96 \
+  --pred_len 96 \
+  --e_layers 2 \
+  --d_layers 1 \
+  --factor 3 \
+  --enc_in 7 \
+  --dec_in 7 \
+  --c_out 7 \
+  --des 'Exp' \
+  --itr 1
+```
 
 ## Experiments
 ### Main Result
