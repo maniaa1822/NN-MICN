@@ -43,7 +43,7 @@ class MIC(nn.Module):
         self.act =  nn.Tanh()
         self.drop = nn.Dropout(0.05)
 
-    def conv_trans_conv(self, input, conv1d, conv1d_trans, isometric):
+    def conv_trans_conv_ours(self, input, conv1d, conv1d_trans, isometric):
         batch_size, seq_len, channels = input.shape
         x = input.permute(0, 2, 1)
 
@@ -72,6 +72,27 @@ class MIC(nn.Module):
         # Residual connection and normalization
         x = x_up.permute(0, 2, 1) + input # [B, L, D]
         x = self.norm(x)
+        return x
+    
+    def conv_trans_conv(self, input, conv1d, conv1d_trans, isometric):
+        batch, seq_len, channel = input.shape
+        x = input.permute(0, 2, 1)
+
+        # downsampling convolution
+        x1 = self.drop(self.act(conv1d(x)))
+        x = x1
+
+        # isometric convolution
+        zeros = torch.zeros((x.shape[0], x.shape[1], x.shape[2] - 1), device=self.device)
+        x = torch.cat((zeros, x), dim=-1)
+        x = self.drop(self.act(isometric(x)))
+        x = self.norm((x + x1).permute(0, 2, 1)).permute(0, 2, 1)
+
+        # upsampling convolution
+        x = self.drop(self.act(conv1d_trans(x)))
+        x = x[:, :, :seq_len]  # truncate
+
+        x = self.norm(x.permute(0, 2, 1) + input)
         return x
     
     def forward(self, src):
@@ -154,7 +175,7 @@ class Model(nn.Module):
                                              c_out=configs.c_out,
                                              conv_kernel=conv_kernel,
                                              isometric_kernel=isometric_kernels,
-                                             device=torch.device('cuda:0'))
+                                             device=torch.device('cuda'))
         if self.task_name == 'long_term_forecast':
             self.regression = nn.Linear(configs.seq_len, configs.pred_len)
             self.regression.weight = nn.Parameter(
