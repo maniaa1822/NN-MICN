@@ -1,6 +1,6 @@
 python3 -u run.py \
   --task_name long_term_forecast \
-  --is_training 0 \
+  --is_training 1 \
   --root_path ./data \
   --data_path ETTh1.csv \
   --model_id ETTh1_96_96 \

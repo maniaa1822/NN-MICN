@@ -40,3 +40,6 @@ mse:0.42487064003944397, mae:0.44194576144218445
 long_term_forecast_ETTh1_96_96_MICN_ETTh1_ftM_sl96_ll96_pl96_dm512_nh8_el2_dl1_df2048_fc3_ebtimeF_dtTrue_Exp_0  
 mse:0.42487064003944397, mae:0.44194576144218445
 
+long_term_forecast_ETTh1_96_96_MICN_ETTh1_ftM_sl96_ll96_pl96_dm256_nh8_el2_dl1_df256_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.4078347384929657, mae:0.4308739900588989
+
