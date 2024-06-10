@@ -127,8 +127,8 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 <table align="center">
   <tr>
-    <td><img src="./img/forecast.pdf" height="150" alt="Forecast"/></td>
-    <td><img src="./img/imputation.pdf" height="150" alt="Imputation"/></td>
+    <td><img src="./img/forecast.png" height="150" alt="Forecast"/></td>
+    <td><img src="./img/imputation.png" height="150" alt="Imputation"/></td>
   </tr>
 </table>
 
