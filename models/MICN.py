@@ -44,6 +44,8 @@ class MIC(nn.Module):
         self.drop = nn.Dropout(0.05)
 
     def conv_trans_conv_ours(self, input, conv1d, conv1d_trans, isometric):
+        
+        """ """
         batch_size, seq_len, channels = input.shape
         x = input.permute(0, 2, 1)
 
