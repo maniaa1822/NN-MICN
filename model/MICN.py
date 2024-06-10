@@ -134,9 +134,7 @@ class SeasonalPrediction(nn.Module):
         return self.projection(dec)
 
 class Model(nn.Module):
-    """
-    Paper link: https://openreview.net/pdf?id=zt53IDUR1U
-    """
+    
     def __init__(self, configs, conv_kernel=[12, 16]):
         """
         conv_kernel: downsampling and upsampling convolution kernel_size
