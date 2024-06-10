@@ -125,12 +125,14 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 ### Qualitative Results
 
-<table align="center">
-  <tr>
-    <td><img src="./img/forecast.png" height="150" alt="Forecast"/></td>
-    <td><img src="./img/imputation.png" height="150" alt="Imputation"/></td>
-  </tr>
-</table>
+<p align="left">
+<img src=".\img\forecast.png" height = "150" alt="" align=center />
+<br><br>
+</p>
+<p align="right">
+<img src=".\img\imputation.png" height = "150" alt="" align=center />
+<br><br>
+</p>
 
 
 * **Left:** Comparison of ground truth values against the model's forecasted values.
