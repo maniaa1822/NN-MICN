@@ -8,7 +8,7 @@ import os
 import time
 import warnings
 import numpy as np
-from models import MICN
+from model import MICN
 from torch.utils.tensorboard import SummaryWriter
 
 warnings.filterwarnings('ignore')

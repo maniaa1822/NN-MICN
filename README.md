@@ -73,30 +73,22 @@ pip install -r requirements.txt
 * Execute the following command in your terminal:
 
 ```bash
-python3 run.py \
+python3 -u run.py \
   --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./data \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_192 \
+  --model_id ETTh1_96_96 \
   --model MICN \
   --data ETTh1 \
-  --features MS \
+  --features M \
   --seq_len 96 \
-  --label_len 96 \
   --pred_len 96 \
-  --e_layers 2 \
-  --d_layers 1 \
-  --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
-  --des 'Exp' \
-  --itr 1
+  --des 'Long Term Forecasting exp' \
 ```
 
 ```bash
-python3 run.py \
+python3 -u run.py \
   --task_name imputation \
   --is_training 1 \
   --root_path ./data \
@@ -105,23 +97,16 @@ python3 run.py \
   --mask_rate 0.125 \
   --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
-  --e_layers 2 \
-  --d_layers 1 \
-  --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
   --batch_size 16 \
   --d_model 64 \
   --d_ff 64 \
-  --des 'Exp' \
-  --itr 1 \
-  --learning_rate 0.001
+  --des 'Imputation exp' \
 ```
+
 
 ## Experiment Results
 
@@ -149,9 +134,21 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 ### Loss Curve
 
-[Image of Loss Curve Over Epochs]
+<table align="center">
+  <tr>
+    <td><img src="./img/loss_train_forecast.png" height="150" alt="Training"/></td>
+    <td><img src="./img/loss_vali_forecast.png" height="150" alt="Validation"/></td>
+  </tr>
+</table>
 
-The plot above shows the training loss over epochs. The decreasing trend indicates successful model training and convergence.
+<table align="center">
+  <tr>
+    <td><img src="./img/loss_train_imputation.png" height="150" alt="Training"/></td>
+    <td><img src="./img/loss_vali_imputation.png" height="150" alt="Validation"/></td>
+  </tr>
+</table>
+
+The plots above shows the training/validation loss over epochs for the forecasting and imputation task. The decreasing trend indicates successful model training and convergence. Furthermore, we can obsverve the application of early stopping that successful stops the training process in order to reduce overfitting.
 
 
 
