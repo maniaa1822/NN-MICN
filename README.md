@@ -73,22 +73,30 @@ pip install -r requirements.txt
 * Execute the following command in your terminal:
 
 ```bash
-python3 -u run.py \
+python3 run.py \
   --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./data \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_96 \
+  --model_id ETTh1_96_192 \
   --model MICN \
   --data ETTh1 \
-  --features M \
+  --features MS \
   --seq_len 96 \
+  --label_len 96 \
   --pred_len 96 \
-  --des 'Long Term Forecasting exp' \
+  --e_layers 2 \
+  --d_layers 1 \
+  --factor 3 \
+  --enc_in 7 \
+  --dec_in 7 \
+  --c_out 7 \
+  --des 'Exp' \
+  --itr 1
 ```
 
 ```bash
-python3 -u run.py \
+python3 run.py \
   --task_name imputation \
   --is_training 1 \
   --root_path ./data \
@@ -97,14 +105,22 @@ python3 -u run.py \
   --mask_rate 0.125 \
   --model MICN \
   --data ETTh1 \
-  --features MS \
+  --features M \
   --seq_len 96 \
   --label_len 0 \
   --pred_len 0 \
+  --e_layers 2 \
+  --d_layers 1 \
+  --factor 3 \
+  --enc_in 7 \
+  --dec_in 7 \
+  --c_out 7 \
   --batch_size 16 \
   --d_model 64 \
   --d_ff 64 \
-  --des 'Imputation exp' \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.001
 ```
 
 ## Experiments
