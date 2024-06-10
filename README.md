@@ -134,7 +134,19 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 ### Loss Curve
 
-[Image of Loss Curve Over Epochs]
+<table align="center">
+  <tr>
+    <td><img src="./img/loss_train_forecast.png" height="200" alt="Training"/></td>
+    <td><img src="./img/loss_vali_forecast.png" height="200" alt="Validation"/></td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <td><img src="./img/loss_train_imputation.png" height="200" alt="Training"/></td>
+    <td><img src="./img/loss_vali_imputation.png" height="200" alt="Validation"/></td>
+  </tr>
+</table>
 
 The plot above shows the training loss over epochs. The decreasing trend indicates successful model training and convergence.
 
