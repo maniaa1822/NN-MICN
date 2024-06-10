@@ -1,6 +1,6 @@
 import os
 import torch
-from models import MICN
+from model import MICN
 
 
 
