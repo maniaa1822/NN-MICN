@@ -54,7 +54,7 @@ Real-world time series data often contains missing values. This implementation i
 * **`run.py`:** Main script for training and evaluating the model.
 
 
-## 1. Installation
+### 1. Installation
 
 ```bash
 git clone https://github.com/maniaa1822/NN-MICN.git
@@ -107,11 +107,6 @@ python3 -u run.py \
   --des 'Imputation exp' \
 ```
 
-## Experiments
-### Main Result
-
-Absolutely! Here's the section on experiment results, including the table, image arrangement, and a loss plot subsection:
-
 ## Experiment Results
 
 ### Quantitative Results
@@ -120,19 +115,17 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 | Task       | MSE                | MAE                |
 |------------|--------------------|--------------------|
-| Forecasting | 0.06436508893966675 | 0.18904291093349457 |
-| Imputation  | 0.07482398301362991 | 0.1946665495634079 |
+| Forecasting | 0.0643 | 0.1890 |
+| Imputation  | 0.0748 | 0.1946 |
 
 ### Qualitative Results
 
-<p align="center">
-<img src=".\img\forecast.png" height = "150" alt="" align=center />
-<br><br>
-</p>
-<p align="center">
-<img src=".\img\imputation.png" height = "150" alt="" align=center />
-<br><br>
-</p>
+<table align="center">
+  <tr>
+    <td><img src="./img/forecast.png" height="250" alt="Forecast"/></td>
+    <td><img src="./img/imputation.png" height="250" alt="Imputation"/></td>
+  </tr>
+</table>
 
 
 * **Left:** Comparison of ground truth values against the model's forecasted values.
@@ -143,16 +136,6 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 [Image of Loss Curve Over Epochs]
 
 The plot above shows the training loss over epochs. The decreasing trend indicates successful model training and convergence.
-
----
-
-**Implementation Notes:**
-
-* You'll need to replace the placeholders `` with the actual paths to your generated plots.
-* For the images, you can use Markdown's image syntax: `![Image Description](image_path)`
-* Consider using a plotting library like Matplotlib or Seaborn to create the loss curve.
-
-Let me know if you have any other questions or modifications!
 
 
 
