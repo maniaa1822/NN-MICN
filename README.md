@@ -148,7 +148,7 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
   </tr>
 </table>
 
-The plot above shows the training loss over epochs. The decreasing trend indicates successful model training and convergence.
+The plots above shows the training/validation loss over epochs for the forecasting and imputation task. The decreasing trend indicates successful model training and convergence. Furthermore, we can obsverve the application of early stopping that successful stops the training process in order to reduce overfitting.
 
 
 
