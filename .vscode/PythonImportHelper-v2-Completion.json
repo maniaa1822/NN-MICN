@@ -216,18 +216,18 @@
     },
     {
         "label": "MICN",
-        "importPath": "models",
-        "description": "models",
+        "importPath": "model",
+        "description": "model",
         "isExtraImport": true,
-        "detail": "models",
+        "detail": "model",
         "documentation": {}
     },
     {
         "label": "MICN",
-        "importPath": "models",
-        "description": "models",
+        "importPath": "model",
+        "description": "model",
         "isExtraImport": true,
-        "detail": "models",
+        "detail": "model",
         "documentation": {}
     },
     {
@@ -465,28 +465,28 @@
     {
         "label": "MIC",
         "kind": 6,
-        "importPath": "models.MICN",
-        "description": "models.MICN",
+        "importPath": "model.MICN",
+        "description": "model.MICN",
         "peekOfCode": "class MIC(nn.Module):\n    \"\"\"\n    MIC layer to extract local and global features\n    \"\"\"\n    def __init__(self, feature_size=512, n_heads=8, dropout=0.05, decomp_kernel=[32], conv_kernel=[24],\n                 isometric_kernel=[18, 6], device='cuda'):\n        super(MIC, self).__init__()\n        self.conv_kernel = conv_kernel\n        self.device = device\n        # isometric convolution",
-        "detail": "models.MICN",
+        "detail": "model.MICN",
         "documentation": {}
     },
     {
         "label": "SeasonalPrediction",
         "kind": 6,
-        "importPath": "models.MICN",
-        "description": "models.MICN",
+        "importPath": "model.MICN",
+        "description": "model.MICN",
         "peekOfCode": "class SeasonalPrediction(nn.Module):\n    def __init__(self, embedding_size=512, n_heads=8, dropout=0.05, d_layers=1, decomp_kernel=[32], c_out=1,\n                 conv_kernel=[2, 4], isometric_kernel=[18, 6], device='cuda'):\n        super(SeasonalPrediction, self).__init__()\n        self.mic = nn.ModuleList([MIC(feature_size=embedding_size, n_heads=n_heads,\n                                      decomp_kernel=decomp_kernel, conv_kernel=conv_kernel,\n                                      isometric_kernel=isometric_kernel, device=device)\n                                  for i in range(d_layers)])\n        self.projection = nn.Linear(embedding_size, c_out)\n    def forward(self, dec):",
-        "detail": "models.MICN",
+        "detail": "model.MICN",
         "documentation": {}
     },
     {
         "label": "Model",
         "kind": 6,
-        "importPath": "models.MICN",
-        "description": "models.MICN",
+        "importPath": "model.MICN",
+        "description": "model.MICN",
         "peekOfCode": "class Model(nn.Module):\n    \"\"\"\n    Paper link: https://openreview.net/pdf?id=zt53IDUR1U\n    \"\"\"\n    def __init__(self, configs, conv_kernel=[12, 16]):\n        \"\"\"\n        conv_kernel: downsampling and upsampling convolution kernel_size\n        \"\"\"\n        super(Model, self).__init__()\n        # Initialize lists for the kernels of the decomposition operation and isometric convolution",
-        "detail": "models.MICN",
+        "detail": "model.MICN",
         "documentation": {}
     },
     {
