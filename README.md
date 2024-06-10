@@ -125,11 +125,11 @@ The following table summarizes the Mean Squared Error (MSE) and Mean Absolute Er
 
 ### Qualitative Results
 
-<p align="left">
+<p align="center">
 <img src=".\img\forecast.png" height = "150" alt="" align=center />
 <br><br>
 </p>
-<p align="right">
+<p align="center">
 <img src=".\img\imputation.png" height = "150" alt="" align=center />
 <br><br>
 </p>
