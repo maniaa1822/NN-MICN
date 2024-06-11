@@ -1,6 +1,8 @@
 pandas
 numpy
-sklearn
+#sklearn
+scikit-learn
 torchvision
 matplotlib
 torch
+tensorboard

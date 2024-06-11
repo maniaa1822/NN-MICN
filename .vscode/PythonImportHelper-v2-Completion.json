@@ -485,7 +485,7 @@
         "kind": 6,
         "importPath": "model.MICN",
         "description": "model.MICN",
-        "peekOfCode": "class Model(nn.Module):\n    \"\"\"\n    Paper link: https://openreview.net/pdf?id=zt53IDUR1U\n    \"\"\"\n    def __init__(self, configs, conv_kernel=[12, 16]):\n        \"\"\"\n        conv_kernel: downsampling and upsampling convolution kernel_size\n        \"\"\"\n        super(Model, self).__init__()\n        # Initialize lists for the kernels of the decomposition operation and isometric convolution",
+        "peekOfCode": "class Model(nn.Module):\n    def __init__(self, configs, conv_kernel=[12, 16]):\n        \"\"\"\n        conv_kernel: downsampling and upsampling convolution kernel_size\n        \"\"\"\n        super(Model, self).__init__()\n        # Initialize lists for the kernels of the decomposition operation and isometric convolution\n        decomposition_kernels = []\n        isometric_kernels = []\n        # Iterate over each kernel in the convolution kernels",
         "detail": "model.MICN",
         "documentation": {}
     },
