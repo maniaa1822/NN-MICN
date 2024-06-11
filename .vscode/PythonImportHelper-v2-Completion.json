@@ -467,7 +467,7 @@
         "kind": 6,
         "importPath": "model.MICN",
         "description": "model.MICN",
-        "peekOfCode": "class MIC(nn.Module):\n    \"\"\"\n    MIC layer to extract local and global features\n    \"\"\"\n    def __init__(self, feature_size=512, n_heads=8, dropout=0.05, decomp_kernel=[32], conv_kernel=[24],\n                 isometric_kernel=[18, 6], device='cuda'):\n        super(MIC, self).__init__()\n        self.conv_kernel = conv_kernel\n        self.device = device\n        # isometric convolution",
+        "peekOfCode": "class MIC(nn.Module):\n    \"\"\"\n    The MIC (Multi-scale Integration Convolution) module designed for time series forecasting, \n    leveraging the power of convolutional neural networks to capture multi-scale temporal dependencies. \n    It integrates various convolution operations, including downsampling, isometric, and upsampling convolutions, \n    to process data at different scales and extract relevant features for forecasting.\n    Attributes:\n    - feature_size (int): The size of the input and output features for the convolutions.\n    - dropout (float): The dropout rate applied to prevent overfitting.\n    - decomp_kernel (list of int): The kernel sizes for the series decomposition layers, used to preprocess the input data by decomposing it into trend and seasonal components.",
         "detail": "model.MICN",
         "documentation": {}
     },
@@ -476,7 +476,7 @@
         "kind": 6,
         "importPath": "model.MICN",
         "description": "model.MICN",
-        "peekOfCode": "class SeasonalPrediction(nn.Module):\n    def __init__(self, embedding_size=512, n_heads=8, dropout=0.05, d_layers=1, decomp_kernel=[32], c_out=1,\n                 conv_kernel=[2, 4], isometric_kernel=[18, 6], device='cuda'):\n        super(SeasonalPrediction, self).__init__()\n        self.mic = nn.ModuleList([MIC(feature_size=embedding_size, n_heads=n_heads,\n                                      decomp_kernel=decomp_kernel, conv_kernel=conv_kernel,\n                                      isometric_kernel=isometric_kernel, device=device)\n                                  for i in range(d_layers)])\n        self.projection = nn.Linear(embedding_size, c_out)\n    def forward(self, dec):",
+        "peekOfCode": "class SeasonalPrediction(nn.Module):\n    \"\"\"\n    The SeasonalPrediction module is designed to predict seasonal patterns in time series data\n    using a combination of Multi-scale Integration Convolution (MIC) layers and linear projection\n    using a fully connected layer.\n    \"\"\"\n    def __init__(self, embedding_size=512, n_heads=8, dropout=0.05, d_layers=1, decomp_kernel=[32], c_out=1,\n                 conv_kernel=[2, 4], isometric_kernel=[18, 6], device='cuda'):\n        super(SeasonalPrediction, self).__init__()\n        self.mic = nn.ModuleList([MIC(feature_size=embedding_size, n_heads=n_heads,",
         "detail": "model.MICN",
         "documentation": {}
     },
@@ -485,7 +485,7 @@
         "kind": 6,
         "importPath": "model.MICN",
         "description": "model.MICN",
-        "peekOfCode": "class Model(nn.Module):\n    def __init__(self, configs, conv_kernel=[12, 16]):\n        \"\"\"\n        conv_kernel: downsampling and upsampling convolution kernel_size\n        \"\"\"\n        super(Model, self).__init__()\n        # Initialize lists for the kernels of the decomposition operation and isometric convolution\n        decomposition_kernels = []\n        isometric_kernels = []\n        # Iterate over each kernel in the convolution kernels",
+        "peekOfCode": "class Model(nn.Module):\n    \"\"\"\n    The Model class defines the architecture of the MICN (Multi-scale Integration Convolution Network)\n    model for time series forecasting. It combines the MIC (Multi-scale Integration Convolution) module\n    with a linear regression layer to predict the trend component of the time series data and generate\n    long-term forecasts. The model also includes an imputation mode for missing data imputation tasks.\n    attributes:\n    - task_name (str): The name of the forecasting task ('long_term_forecast' or 'imputation').\n    - pred_len (int): The prediction length for the forecasting task.\n    - seq_len (int): The sequence length of the input data.",
         "detail": "model.MICN",
         "documentation": {}
     },

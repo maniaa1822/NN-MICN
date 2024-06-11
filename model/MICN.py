@@ -5,10 +5,29 @@ import torch.nn.functional as F
 
 class MIC(nn.Module):
     """
-    MIC layer to extract local and global features
+    The MIC (Multi-scale Integration Convolution) module designed for time series forecasting, 
+    leveraging the power of convolutional neural networks to capture multi-scale temporal dependencies. 
+    It integrates various convolution operations, including downsampling, isometric, and upsampling convolutions, 
+    to process data at different scales and extract relevant features for forecasting.
+
+    Attributes:
+    - feature_size (int): The size of the input and output features for the convolutions.
+    - dropout (float): The dropout rate applied to prevent overfitting.
+    - decomp_kernel (list of int): The kernel sizes for the series decomposition layers, used to preprocess the input data by decomposing it into trend and seasonal components.
+    - conv_kernel (list of int): The kernel sizes for the downsampling convolutional layers, which reduce the dimensionality of the data to capture lower-level features.
+    - isometric_kernel (list of int): The kernel sizes for the isometric convolutional layers, designed to process the data at its original scale without changing its dimensionality.
+    - device (str): The device (e.g., 'cuda' or 'cpu') on which the model computations will be performed.
+
+    Methods:
+    - __init__(self, feature_size=512, n_heads=8, dropout=0.05, decomp_kernel=[32], conv_kernel=[24], isometric_kernel=[18, 6], device='cuda'): Initializes the MIC model with the specified parameters.
+    - conv_trans_conv_ours(self, input, conv1d, conv1d_trans, isometric):
+    Applies a sequence of convolution operations on the input tensor, including downsampling, isometric, and upsampling convolutions, with residual connections and normalization.
+
+    The MIC class is suited for the analysis of complex time series data across multiple scales thanks to the integration of different convolution operations,
+    such as financial market predictions, weather forecasting, and demand forecasting in supply chain management.
     """
 
-    def __init__(self, feature_size=512, n_heads=8, dropout=0.05, decomp_kernel=[32], conv_kernel=[24],
+    def __init__(self, feature_size=512, dropout=0.05, decomp_kernel=[32], conv_kernel=[24],
                  isometric_kernel=[18, 6], device='cuda'):
         super(MIC, self).__init__()
         self.conv_kernel = conv_kernel
@@ -45,7 +64,46 @@ class MIC(nn.Module):
 
     def conv_trans_conv_ours(self, input, conv1d, conv1d_trans, isometric):
         
-        """ """
+        """
+    Performs a sequence of convolution operations on the input tensor, designed for
+    multi-scale processing for the MIC (Multi-scale Integration Convolution) layer. This function
+    implements downsampling, isometric, and upsampling convolutions
+    with residual connections and normalization.
+
+    Parameters:
+    - input (torch.Tensor): The input tensor with shape [batch_size, sequence_length, channels].
+    - conv1d (torch.nn.modules.conv.Conv1d): The 1D convolutional layer used for downsampling.
+    - conv1d_trans (torch.nn.modules.conv.ConvTranspose1d): The 1D transposed convolutional layer used for upsampling.
+    - isometric (torch.nn.modules.conv.Conv1d): The 1D convolutional layer used for isometric convolution.
+
+    The process involves the following steps:
+    1. Downsampling convolution with a residual connection: Applies `conv1d` to the input tensor and
+       activates the result using a non-linear activation function. The result is then passed through
+       a dropout layer.
+    2. Isometric convolution with zero-padding: Zero-pads the result of the downsampling convolution
+       on one side and then applies the `isometric` convolution. The result is activated, passed through
+       a dropout layer, and combined with the result from the downsampling step.
+    3. Upsampling convolution with truncation: Applies `conv1d_trans` to the combined tensor from the
+       previous step, activates the result, and truncates it to match the original sequence length.
+    4. Residual connection and normalization: Adds the result from the upsampling step to the original
+       input tensor and normalizes the result.
+
+    Returns:
+    - torch.Tensor: The output tensor after applying the sequence of convolutions, with the same shape
+      as the input tensor [batch_size, sequence_length, channels].
+    
+    ---------------------------------------------------------------------------------------------
+    
+    The purpose of the isometric convolution in the conv_trans_conv_ours function is to efficiently
+    model global correlations within the input tensor without the computational burden of attention mechanisms.
+    This is achieved through a specific convolution operation that is designed to handle multi-scale processing 
+    for the MIC (Multi-scale Integration Convolution) layer. The isometric convolution is applied after
+    downsampling the input tensor and involves zero-padding the result of the downsampling convolution 
+    on one side before applying the isometric convolution. This step is crucial for capturing global 
+    features in the data while maintaining computational efficiency, especially in the context of long-term time series forecasting
+    where capturing both local and global patterns is essential.
+    """
+    
         batch_size, seq_len, channels = input.shape
         x = input.permute(0, 2, 1)
 
@@ -76,31 +134,15 @@ class MIC(nn.Module):
         x = self.norm(x)
         return x
     
-    def conv_trans_conv(self, input, conv1d, conv1d_trans, isometric):
-        batch, seq_len, channel = input.shape
-        x = input.permute(0, 2, 1)
-
-        # downsampling convolution
-        x1 = self.drop(self.act(conv1d(x)))
-        x = x1
-
-        # isometric convolution
-        zeros = torch.zeros((x.shape[0], x.shape[1], x.shape[2] - 1), device=self.device)
-        x = torch.cat((zeros, x), dim=-1)
-        x = self.drop(self.act(isometric(x)))
-        x = self.norm((x + x1).permute(0, 2, 1)).permute(0, 2, 1)
-
-        # upsampling convolution
-        x = self.drop(self.act(conv1d_trans(x)))
-        x = x[:, :, :seq_len]  # truncate
-
-        x = self.norm(x.permute(0, 2, 1) + input)
-        return x
-    
     def forward(self, src):
+        
+        """
+        Forward pass of the MIC (Multi-scale Integration Convolution) layer, which processes the input tensor
+        using a sequence of convolution operations to capture multi-scale temporal dependencies.
+        """
         # Multi-scale processing
         multi_scale_outputs = [
-            self.conv_trans_conv(self.decomp[i](src)[0], self.conv[i], self.conv_trans[i], self.isometric_conv[i])
+            self.conv_trans_conv_ours(self.decomp[i](src)[0], self.conv[i], self.conv_trans[i], self.isometric_conv[i])
             for i in range(len(self.conv_kernel))
         ]
 
@@ -117,6 +159,12 @@ class MIC(nn.Module):
         return self.norm2(merged_output + processed_output) 
 
 class SeasonalPrediction(nn.Module):
+    
+    """
+    The SeasonalPrediction module is designed to predict seasonal patterns in time series data
+    using a combination of Multi-scale Integration Convolution (MIC) layers and linear projection
+    using a fully connected layer.
+    """
     def __init__(self, embedding_size=512, n_heads=8, dropout=0.05, d_layers=1, decomp_kernel=[32], c_out=1,
                  conv_kernel=[2, 4], isometric_kernel=[18, 6], device='cuda'):
         super(SeasonalPrediction, self).__init__()
@@ -134,6 +182,24 @@ class SeasonalPrediction(nn.Module):
         return self.projection(dec)
 
 class Model(nn.Module):
+    
+    """
+    The Model class defines the architecture of the MICN (Multi-scale Integration Convolution Network)
+    model for time series forecasting. It combines the MIC (Multi-scale Integration Convolution) module
+    with a linear regression layer to predict the trend component of the time series data and generate
+    long-term forecasts. The model also includes an imputation mode for missing data imputation tasks.
+    
+    attributes:
+    - task_name (str): The name of the forecasting task ('long_term_forecast' or 'imputation').
+    - pred_len (int): The prediction length for the forecasting task.
+    - seq_len (int): The sequence length of the input data.
+    
+    methods:
+    - forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec): Performs long-term forecasting using the MICN model.
+    - imputation(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask): Performs data imputation using the MICN model.
+    - forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None): Implements the forward pass of the MICN model.
+    
+    """
     
     def __init__(self, configs, conv_kernel=[12, 16]):
         """
@@ -216,7 +282,6 @@ class Model(nn.Module):
         # Combine and extract prediction horizon
         imputed_output = conv_output + trend 
         return imputed_output
-
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
         if self.task_name == 'long_term_forecast':
