@@ -55,3 +55,4 @@ def print_args(args):
     p_hidden_dims_str = ', '.join(map(str, args.p_hidden_dims))
     print(f'  {"P Hidden Dims:":<20}{p_hidden_dims_str:<20}{"P Hidden Layers:":<20}{args.p_hidden_layers:<20}') 
     print()
+    

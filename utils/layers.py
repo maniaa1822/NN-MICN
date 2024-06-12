@@ -125,7 +125,6 @@ class DataEmbedding(nn.Module):
                 x) + self.temporal_embedding(x_mark) + self.position_embedding(x)
         return self.dropout(x)
 
-
 class moving_avg(nn.Module):
     """
     Moving average block to highlight the trend of time series

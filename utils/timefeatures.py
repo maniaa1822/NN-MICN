@@ -20,6 +20,7 @@ from pandas.tseries import offsets
 from pandas.tseries.frequencies import to_offset
 
 
+
 class TimeFeature:
     def __init__(self):
         pass
