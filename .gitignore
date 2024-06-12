@@ -166,7 +166,6 @@ scripts/augmentation/
 run_anylearn.py
 environment.txt
 
-vscode
+.vscode
 
 .DS_Store
-.vscode/
