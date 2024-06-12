@@ -56,7 +56,10 @@ Real-world time series data often contains missing values. This implementation i
 * **`data_provider`:** Handles data loading, preprocessing, and batching for training and evaluation.
 * **`exp`:**  Manages experiment sessions, including configuration, logging, and checkpointing.
 * **`models`:** Contains the implementation of the MICN model architecture.
+* **`utils`:** Contains various utility functions used throughout the project.
+* **`scripts`:** Includes additional scripts for specific tasks.
 * **`run.py`:** Main script for training and evaluating the model.
+
 
 
 ### 1. Installation
