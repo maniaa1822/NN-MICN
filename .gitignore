@@ -166,6 +166,6 @@ scripts/augmentation/
 run_anylearn.py
 environment.txt
 
-.vscode
-
 .DS_Store
+.vscode/launch.json
+.vscode/PythonImportHelper-v2-Completion.json
