@@ -39,6 +39,8 @@ We use downsampling convolution to extract local features and isometric convolut
 <img src=".\img\local-global.png" height = "150" alt="" align=center />
 <br><br>
 </p>
+For a deeper understanding of the MICN model's architecture and the implementation details, refer to the `model.py` file within the `models` directory. This file provides detailed explanations for each building block of the model, including the multi-scale structure, isometric convolutions, and other core elements. 
+
 
 
 ### Imputation for Missing Data
