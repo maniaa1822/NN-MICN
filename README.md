@@ -92,7 +92,7 @@ python3 -u run.py \
   --features M \
   --seq_len 96 \
   --pred_len 96 \
-  --des 'Long Term Forecasting exp' \
+  --des 'Long Term Forecasting exp'
 ```
 
 ```bash
