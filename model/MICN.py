@@ -19,7 +19,7 @@ class MIC(nn.Module):
     - device (str): The device (e.g., 'cuda' or 'cpu') on which the model computations will be performed.
 
     Methods:
-    - __init__(self, feature_size=512, n_heads=8, dropout=0.05, decomp_kernel=[32], conv_kernel=[24], isometric_kernel=[18, 6], device='cuda'): Initializes the MIC model with the specified parameters.
+    - __init__(self, feature_size=512, dropout=0.05, decomp_kernel=[32], conv_kernel=[24], isometric_kernel=[18, 6], device='cuda'): Initializes the MIC model with the specified parameters.
     - conv_trans_conv_ours(self, input, conv1d, conv1d_trans, isometric):
     Applies a sequence of convolution operations on the input tensor, including downsampling, isometric, and upsampling convolutions, with residual connections and normalization.
 
@@ -169,9 +169,9 @@ class SeasonalPrediction(nn.Module):
                  conv_kernel=[2, 4], isometric_kernel=[18, 6], device='cuda'):
         super(SeasonalPrediction, self).__init__()
 
-        self.mic = nn.ModuleList([MIC(feature_size=embedding_size, n_heads=n_heads,
-                                      decomp_kernel=decomp_kernel, conv_kernel=conv_kernel,
-                                      isometric_kernel=isometric_kernel, device=device)
+        self.mic = nn.ModuleList([MIC(feature_size=embedding_size, decomp_kernel=decomp_kernel, 
+                                      conv_kernel=conv_kernel, isometric_kernel=isometric_kernel, 
+                                      device=device)
                                   for i in range(d_layers)])
 
         self.projection = nn.Linear(embedding_size, c_out)
