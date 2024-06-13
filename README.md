@@ -112,7 +112,6 @@ python3 -u run.py \
   --batch_size 16 \
   --d_model 64 \
   --d_ff 64 \
-  --n_heads 8 \
   --des 'Imputation exp'
 ```
 
