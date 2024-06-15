@@ -115,6 +115,7 @@ python3 -u run.py \
   --des 'Imputation exp'
 ```
 
+* You can use the pre-trained MICN models provided in this Google Drive folder: https://drive.google.com/file/d/1eTdlrbfMRXl_cBAbhR99UcgLvFD4tWLN/view?usp=sharing
 
 ## Experiment Results
 
